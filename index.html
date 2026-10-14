@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffe7f0"><title>For Brilliant, from Mubiana ❤️</title>
+<style>
+:root{--pink:#ef5d91;--deep:#c92f68;--ink:#492536;--muted:#926b7d;--paper:#fffafd}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#ffd8e7,transparent 36%),linear-gradient(145deg,#fff8fc,#ffeaf2)}
+.card{width:min(100%,470px);padding:30px 24px;text-align:center;background:rgba(255,255,255,.92);border:1px solid white;border-radius:28px;box-shadow:0 18px 55px #a63e651c}
+.heart{font-size:48px;display:inline-block;animation:float 2.8s ease-in-out infinite}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+h1{font-size:clamp(28px,7vw,36px);margin:8px 0}h2{font-size:clamp(23px,6vw,30px);line-height:1.25;margin:10px 0}p{line-height:1.65}.muted{color:var(--muted);font-size:14px}
+.panel{padding:24px 18px;border:1px solid #f4d8e3;border-radius:22px;background:var(--paper);animation:appear .35s ease}@keyframes appear{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}.hidden{display:none!important}
+.buttons{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin-top:25px;min-height:52px}
+button{font:inherit;font-weight:750;min-height:51px;min-width:120px;padding:12px 21px;border-radius:999px;cursor:pointer;transition:transform .18s ease}
+.yes{background:linear-gradient(135deg,#ff8bb2,#e84e86);color:white;border:0;box-shadow:0 7px 18px #e84e8630}.no{background:white;color:var(--deep);border:1px solid #edc8d7}
+button:focus-visible{outline:3px solid #6d2846;outline-offset:3px}.message{min-height:24px;margin-top:16px;color:var(--muted);font-size:14px}.footer{font-size:12px;color:#a17c8d;margin-top:22px}
+</style></head><body><main class="card">
+<div class="heart">❤️</div><p class="muted">A little something from Mubiana, made especially for Brilliant.</p>
+<section class="panel" id="welcome"><h1>Hey, Brilliant 💗</h1><p>I made this little page specifically for you. There are a few questions before I get to what I really want to ask you.</p><button class="yes" id="start">Okay, let's go 💕</button></section>
+<section class="panel hidden" id="questions"><p class="muted" id="progress">Question 1 of 3</p><h2 id="questionText"></h2><div class="buttons"><button class="yes" id="questionYes">Yes ❤️</button><button class="no" id="questionNo">No 🙈</button></div><p class="message" id="questionMessage" aria-live="polite"></p></section>
+<section class="panel hidden" id="proposal"><div style="font-size:45px">💍</div><p class="muted">Okay... now for the question I actually wanted to ask.</p><h2>Brilliant, will you be mine? ❤️</h2><div class="buttons" id="proposalButtons"><button class="yes" id="finalYes">YES ❤️</button><button class="no" id="finalNo">NO 🙈</button></div><p class="message" id="noMessage" aria-live="polite"></p></section>
+<section class="panel hidden" id="success"><div style="font-size:48px">🥹❤️🎉</div><h2>You said YES!</h2><p>Brilliant, I could have asked you this in a normal message, but you deserve something made just for you.</p><p>We've shared laughs, conversations, little moments and memories that mean more to me than I sometimes know how to say.</p><p><strong>So this isn't just a question on a webpage. It's me, Mubiana, asking you to choose us. ❤️</strong></p><p><strong>From Mubiana, to Brilliant. With a smile and all my heart. ❤️</strong></p></section>
+<p class="footer">Made with care by Mubiana ❤️</p></main>
+<script>
+(()=>{const $=id=>document.getElementById(id),welcome=$('welcome'),questions=$('questions'),proposal=$('proposal'),success=$('success');const items=['Do you believe two people can start as friends and slowly become something more? ❤️','Do you think the little moments we share can mean more than they seem? 🥹','If someone who genuinely cares about you asked you to choose them, would you give them a chance? ❤️'];let step=0,noAttempts=0;
+function showQuestion(){$('questionText').textContent=items[step];$('progress').textContent=`Question ${step+1} of 3`;$('questionMessage').textContent=''}
+$('start').addEventListener('click',()=>{welcome.classList.add('hidden');questions.classList.remove('hidden');showQuestion()});
+$('questionYes').addEventListener('click',()=>{step++;if(step<items.length)showQuestion();else{questions.classList.add('hidden');proposal.classList.remove('hidden')}});
+$('questionNo').addEventListener('click',()=>{$('questionMessage').textContent=step===2?'Hmm... think about that one carefully. 😭❤️':'That is fair. Let’s see the next question. 💕'});
+$('finalNo').addEventListener('click',()=>{noAttempts++;$('noMessage').textContent=noAttempts===1?'You chose NO? 😭 This button is a little shy...':'😂 You caught me! The No button is being playful, but your answer is yours.';const button=$('finalNo'),w=$('proposalButtons').clientWidth,d=Math.min(65+noAttempts*15,Math.max(35,w/3));button.style.transform=`translateX(${noAttempts%2?d:-d}px)`;setTimeout(()=>button.style.transform='',500)});
+$('finalYes').addEventListener('click',()=>{proposal.classList.add('hidden');success.classList.remove('hidden');for(let i=0;i<18;i++){const h=document.createElement('span');h.textContent=i%2?'❤️':'💕';Object.assign(h.style,{position:'fixed',left:(5+Math.random()*90)+'%',top:(10+Math.random()*80)+'%',fontSize:(18+Math.random()*20)+'px',pointerEvents:'none',zIndex:'5'});document.body.appendChild(h);h.animate([{transform:'translateY(10px)',opacity:0},{transform:'translateY(-35px)',opacity:1},{transform:'translateY(-100px)',opacity:0}],{duration:1800,fill:'forwards'});setTimeout(()=>h.remove(),1900)}});
+})();
+</script></body></html>
